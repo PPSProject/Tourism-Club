@@ -1,7 +1,7 @@
-﻿{
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:41128",
       "sslPort": 44361
@@ -9,19 +9,23 @@
   },
   "profiles": {
     "IIS Express": {
-      "commandName": "IISExpress",
+      "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "ancmHostingModel": "InProcess",
+      "use64Bit": true,
+      "applicationUrl": "http://localhost:41128",
+      "jsWebView2Debugging": false
     },
     "tourism_club": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
   }
 }
