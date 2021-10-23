@@ -20,9 +20,19 @@
     <Folder Include="wwwroot\sass\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Domain\" />
     <Folder Include="Service\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Shared\CssPartial.cshtml" />
+    <None Include="Views\Shared\FooterPartial.cshtml" />
+    <None Include="Views\Shared\HeaderPartial.cshtml" />
+    <None Include="Views\Shared\MetatagsPartial.cshtml" />
+    <None Include="Views\Shared\ScriptsPartial.cshtml" />
+    <None Include="Views\Shared\SidebarPartical.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
 
 </Project>
