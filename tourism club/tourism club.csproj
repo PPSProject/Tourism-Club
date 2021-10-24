@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="bundleconfig.json" />
     <Content Remove="compilerconfig.json" />
     <Content Remove="_Layot.cshtml" />
   </ItemGroup>
@@ -24,12 +25,12 @@
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\sass\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\js\" />
     <Folder Include="Domain\" />
     <Folder Include="Service\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Shared\CssPartial.cshtml" />
