@@ -13,7 +13,6 @@ namespace tourism_club.Models
         public string LocationTitle { get; set; }
         public string LocationDescription { get; set;}
         public string PathToPhotos { get; set; }
-
         public List<Comment> comments { get; set; }
     }
 }

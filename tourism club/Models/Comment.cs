@@ -11,6 +11,7 @@ namespace tourism_club.Models
         [Key]
         public int Id { get; set; }
         public string comment { get; set; }
+        
         public int LocationId { get; set; }
 
         public virtual Location Location { get; set; }
