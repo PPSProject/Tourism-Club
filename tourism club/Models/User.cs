@@ -10,7 +10,7 @@ namespace tourism_club.Models
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

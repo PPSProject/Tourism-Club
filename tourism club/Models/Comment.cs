@@ -6,12 +6,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace tourism_club.Models
 {
-    public class Comments:Location
+    public class Comment
     {
         [Key]
-        public int CommentId { get; set; }
+        public int Id { get; set; }
         public string comment { get; set; }
         public int LocationId { get; set; }
+
+        public virtual Location Location { get; set; }
     }
 
 }
