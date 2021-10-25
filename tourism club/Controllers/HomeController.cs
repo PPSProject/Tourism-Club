@@ -16,7 +16,7 @@ namespace tourism_club.Controllers
             ViewBag.Style = "border:0;";
             ViewBag.screen = "";
             ViewBag.loading = "lazy";
-
+ 
             return View();
         }
     }
