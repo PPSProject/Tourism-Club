@@ -9,6 +9,8 @@ namespace tourism_club.Interfaces
     interface ILocations
     {
         IEnumerable<Location> locations { get; }
+        Location getLocation { get; }
+        Location addLocation { set; }
 
     }
 }
