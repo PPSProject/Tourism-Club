@@ -37,9 +37,10 @@ namespace tourism_club.Domain.Classes
             }
         }
 
-        public void removeFrame(Frame frame)
+        public void removeFrame(int id)
         {
-            
+            context.frames.Remove(new Frame() { Id = id });
+            context.SaveChanges();
         }
     }
 }

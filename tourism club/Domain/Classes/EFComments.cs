@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using tourism_club.Domains.Interfaces;
 using tourism_club.Models;
 using Microsoft.EntityFrameworkCore;
+using tourism_club.Domain.Interfaces;
 
 namespace tourism_club.Domain.Classes
 {

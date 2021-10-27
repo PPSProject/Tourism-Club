@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using tourism_club.Models;
 
-namespace tourism_club.Domains.Interfaces
+namespace tourism_club.Domain.Interfaces
 {
     interface ILocations
     {

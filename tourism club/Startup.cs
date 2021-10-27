@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using tourism_club.Domain;
+using tourism_club.Domain.Classes;
+using tourism_club.Domain.Interfaces;
 
 namespace tourism_club
 {
@@ -29,6 +31,13 @@ namespace tourism_club
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0).AddCookieTempDataProvider();
             services.AddMvc();
+
+            services.AddTransient<IAdmins, EFAdmins>();
+            services.AddTransient<IComments, EFComments>();
+            services.AddTransient<IFrames, EFFrames>();
+            services.AddTransient<IGids, EFGids>();
+            services.AddTransient<ILocations, EFLocations>();
+            services.AddTransient<IUsers, EFUsers>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

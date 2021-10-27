@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace tourism_club.Models
 {
+
+    /// <summary>
+    /// Parse.text(atribute, value)
+    /// 
+    /// </summary>
     public class Gid
     {
         public int Id { get; set; }

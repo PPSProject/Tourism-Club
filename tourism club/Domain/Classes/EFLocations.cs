@@ -2,27 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using tourism_club.Domains.Interfaces;
 using tourism_club.Models;
 using Microsoft.EntityFrameworkCore;
+using tourism_club.Domain.Interfaces;
 
 namespace tourism_club.Domain.Classes
 {
     public class EFLocations : ILocations
     {
         private readonly AppDBContent context;
-
         public EFLocations(AppDBContent context)
         {
             this.context = context;
         }
-        public IEnumerable<Location> locations
-        {
-            get
-            {
-                return context.locations;
-            }
-        }
+        public IEnumerable<Location> locations => context.locations;
 
         public Location getLocation(int id)
         {
@@ -40,7 +33,7 @@ namespace tourism_club.Domain.Classes
             {
                 context.Entry(loc).State = EntityState.Modified;
             }
-            context.SaveChanges();
+            //context.SaveChanges();
         }
 
         public void removeLocation(int id)

@@ -6,11 +6,11 @@ using tourism_club.Models;
 
 namespace tourism_club.Domain.Interfaces
 {
-    interface IComments
+    interface IUsers
     {
-        IEnumerable<Comment> comments { get; }
-        void addComment(Comment comm);
-        void deleteComment(int id);
-
+        IEnumerable<User> users { get; }
+        User getUser(int id);
+        void addUser(User user);
+        void removeUser(int id);
     }
 }
