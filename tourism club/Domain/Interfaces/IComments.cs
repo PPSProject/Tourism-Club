@@ -10,6 +10,7 @@ namespace tourism_club.Domains.Interfaces
     {
         IEnumerable<Comment> comments { get; }
         void addComment(Comment comm);
+        void deleteComment(int id);
 
     }
 }

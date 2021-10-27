@@ -20,7 +20,8 @@ namespace tourism_club.Domain.Classes
         {
             get
             {
-                return context.comments;
+                //Якщо у вас помилка, значить вона можливо тут
+                return context.comments.Include(c => c.LocationId);
             }
         }
 
@@ -34,6 +35,14 @@ namespace tourism_club.Domain.Classes
             {
                 context.Entry(comm).State = EntityState.Modified;
             }
+            context.SaveChanges();
+        }
+
+        public void deleteComment(int id)
+        {
+            //Пояснення
+            //https://qastack.ru/programming/2471433/how-to-delete-an-object-by-id-with-entity-framework
+            context.comments.Remove(new Comment() { Id = id });
             context.SaveChanges();
         }
     }

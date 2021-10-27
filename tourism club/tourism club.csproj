@@ -9,10 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\**" />
     <Compile Remove="Models\ViewComponents\**" />
+    <Compile Remove="Service\**" />
+    <Content Remove="Areas\**" />
     <Content Remove="Models\ViewComponents\**" />
+    <Content Remove="Service\**" />
+    <EmbeddedResource Remove="Areas\**" />
     <EmbeddedResource Remove="Models\ViewComponents\**" />
+    <EmbeddedResource Remove="Service\**" />
+    <None Remove="Areas\**" />
     <None Remove="Models\ViewComponents\**" />
+    <None Remove="Service\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,12 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\View\" />
+    <Folder Include="Functions\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\sass\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="Service\" />
   </ItemGroup>
 
   <ItemGroup>

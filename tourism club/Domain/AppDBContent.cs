@@ -19,5 +19,6 @@ namespace tourism_club.Domain
         public DbSet<Comment> comments { get; set; }
         public DbSet<Admin> admins { get; set; }
         public DbSet<Frame> frames { get; set; }
+        public DbSet<Gid> gids { get; set; }
     }
 }
