@@ -10,7 +10,6 @@ namespace tourism_club.Domain
 {
     public static class SampleData
     {
-        static readonly EFComments coms;
         
         public static void Initialize(AppDBContent context)
         {

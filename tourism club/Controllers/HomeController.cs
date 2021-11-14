@@ -5,17 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using tourism_club.Domain;
 using tourism_club.Domain.Classes;
+using tourism_club.Domain.Interfaces;
 using tourism_club.Models;
 
 namespace tourism_club.Controllers
 {
     public class HomeController : Controller
     {
-        AppDBContent db;
-
+        readonly AppDBContent db;
+        readonly ILocations loc;
         public HomeController(AppDBContent context)
         {
             db = context;
+            loc = new EFLocations(context);
         }
         public IActionResult Index()
         {
@@ -30,12 +32,7 @@ namespace tourism_club.Controllers
             if (id == null)
                 return RedirectToAction("Index");
 
-            //Location location = db.locations.
-
-            //ViewBag.Locationdesc = location.LocationDescription;
-
-
-
+            Location location = loc.getLocation(id);
             return View();
         }
     }
