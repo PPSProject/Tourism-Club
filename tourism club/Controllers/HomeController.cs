@@ -14,17 +14,19 @@ namespace tourism_club.Controllers
     {
         readonly AppDBContent db;
         readonly ILocations loc;
+        readonly IFrames frames;
         public HomeController(AppDBContent context)
         {
             db = context;
             loc = new EFLocations(context);
+            frames = new EFFrames(context);
         }
+
         public IActionResult Index()
         {
 
             return View(db.locations.ToList());
         }
-
 
         [HttpGet]
         public IActionResult Location(int id)
@@ -32,8 +34,17 @@ namespace tourism_club.Controllers
             if (id == null)
                 return RedirectToAction("Index");
 
+           
+
             Location location = loc.getLocation(id);
-            return View();
+            string[] arr = location.PathToPhotos.Split(",");
+            Frame frame = frames.getFrame(location);
+            ViewBag.Title = location.LocationTitle;
+            ViewBag.Locationdesc = location.LocationDescription;
+            ViewBag.FrameId = frame.Id;
+            ViewBag.Fotos = arr;
+
+            return View(db.frames.ToList());
         }
     }
 }

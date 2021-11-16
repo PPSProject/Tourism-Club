@@ -1,5 +1,28 @@
-﻿
+﻿@model IEnumerable<tourism_club.Models.Frame>
+
+
+<h3>@ViewBag.Title</h3>
+<div>
+    @{ 
+        foreach(var fotos in ViewBag.Fotos)
+        {
+           <img src ="@fotos" alt="Sample foto" width=600 height=400/>     
+        }
+    }
+</div>
 
 <div>
     <p>@ViewBag.Locationdesc</p>
+</div>
+
+<div>
+    @{
+        foreach (var f in Model)
+        {
+            if (f.Id == ViewBag.FrameId)
+            {
+                <iframe src="@f.source" width="@f.width" height="@f.height" style="@f.style" allowfullscreen ="@f.screen" loading="@f.loading"></iframe>
+            }
+        }
+    }
 </div>

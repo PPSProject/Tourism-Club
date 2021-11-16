@@ -54,7 +54,7 @@ namespace tourism_club.Domain
                         style = "border:0;",
                         screen = "",
                         loading = "lazy",
-                        LocationId = 1
+                        LocationId = 2
                     }
                  );
 

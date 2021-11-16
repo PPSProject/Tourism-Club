@@ -8,7 +8,7 @@ namespace tourism_club.Domain.Interfaces
 {
     interface IFrames
     {
-        Frame getFrame { get; }
+        Frame getFrame(Location location);
         void addFrame(Frame frame);
         void removeFrame(int id);
     }

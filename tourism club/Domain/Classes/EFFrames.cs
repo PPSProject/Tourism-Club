@@ -29,12 +29,10 @@ namespace tourism_club.Domain.Classes
             context.SaveChanges();
         }
 
-        public Frame getFrame
+        public Frame getFrame(Location location)
         {
-            get
-            {
-                return (Frame)context.frames.Include(c => c.LocationId);
-            }
+               // return (Frame)context.frames.Include(c => (int)c.LocationId == location.Id);
+            return (Frame)context.frames.FirstOrDefault(x => x.LocationId == location.Id);
         }
 
         public void removeFrame(int id)

@@ -37,7 +37,6 @@
     <Folder Include="Functions\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\sass\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
