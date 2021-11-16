@@ -8,7 +8,7 @@ namespace tourism_club.Domain.Interfaces
 {
     interface IComments
     {
-        IEnumerable<Comment> comments { get; }
+        IEnumerable<Comment> comments(Location location);
         void addComment(Comment comm);
         void deleteComment(int id);
 

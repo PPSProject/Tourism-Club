@@ -13,7 +13,7 @@ namespace tourism_club.Models
         public string comment { get; set; }
         
         public int LocationId { get; set; }
-        public string CommentatorId { get; set; }
+        public int CommentatorId { get; set; }
 
         public virtual Location Location { get; set; }
     }

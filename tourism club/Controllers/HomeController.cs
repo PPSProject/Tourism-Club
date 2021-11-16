@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,13 @@ namespace tourism_club.Controllers
         readonly AppDBContent db;
         readonly ILocations loc;
         readonly IFrames frames;
+        readonly IComments coms;
         public HomeController(AppDBContent context)
         {
             db = context;
             loc = new EFLocations(context);
             frames = new EFFrames(context);
+            coms = new EFComments(context);
         }
 
         public IActionResult Index()
@@ -37,14 +40,25 @@ namespace tourism_club.Controllers
            
 
             Location location = loc.getLocation(id);
+
             string[] arr = location.PathToPhotos.Split(",");
             Frame frame = frames.getFrame(location);
-            ViewBag.Title = location.LocationTitle;
+
+            location.comments = coms.comments(location).ToList();
+            
+
+            //ViewBag.Title = location.LocationTitle;
             ViewBag.Locationdesc = location.LocationDescription;
             ViewBag.FrameId = frame.Id;
             ViewBag.Fotos = arr;
 
+            ViewBag.Comments = location.comments;
+
             return View(db.frames.ToList());
         }
+
+
+
+
     }
 }

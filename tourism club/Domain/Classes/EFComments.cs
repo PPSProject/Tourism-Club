@@ -16,13 +16,10 @@ namespace tourism_club.Domain.Classes
         {
             this.context = context;
         }
-        public IEnumerable<Comment> comments
+        public IEnumerable<Comment> comments(Location location)
         {
-            get
-            {
-                //Якщо у вас помилка, значить вона можливо тут
-                return context.comments.Include(c => c.LocationId);
-            }
+            return context.comments.Where(c => c.LocationId == location.Id).OrderBy(c=>c.LocationId);
+ 
         }
 
         public void addComment(Comment comm)

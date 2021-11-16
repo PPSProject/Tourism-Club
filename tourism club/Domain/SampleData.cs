@@ -59,6 +59,23 @@ namespace tourism_club.Domain
                  );
 
             }
+            if (!context.comments.Any())
+            {
+                context.comments.AddRange(
+                    new Comment
+                    {
+                        comment = "Там недавно трахались на ратуші, хто зняв?",
+                        LocationId = 1,
+                        CommentatorId = 1
+                    },
+                    new Comment
+                    {
+                        comment = "Продам жигуль недорого",
+                        LocationId = 1,
+                        CommentatorId = 2
+                    }
+                 );
+            }
             context.SaveChanges();
         }
     }
