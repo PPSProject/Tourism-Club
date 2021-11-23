@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace tourism_club.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Location(int id)
         {
             if (id == null)
@@ -45,8 +47,8 @@ namespace tourism_club.Controllers
             Frame frame = frames.getFrame(location);
 
             location.comments = coms.comments(location).ToList();
-            
 
+            string t = User.Identity.Name;
             //ViewBag.Title = location.LocationTitle;
             ViewBag.Locationdesc = location.LocationDescription;
             ViewBag.FrameId = frame.Id;
@@ -57,8 +59,14 @@ namespace tourism_club.Controllers
             return View(db.frames.ToList());
         }
 
+        //[HttpPost]
+        //public IActionResult Location()
+        //{
+
+        //}
 
 
+        
 
     }
 }

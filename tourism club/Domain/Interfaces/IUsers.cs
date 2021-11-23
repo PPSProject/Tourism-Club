@@ -6,7 +6,7 @@ using tourism_club.Models;
 
 namespace tourism_club.Domain.Interfaces
 {
-    interface IUsers
+    public interface IUsers
     {
         IEnumerable<User> users { get; }
         User getUser(int id);

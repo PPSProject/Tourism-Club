@@ -4,13 +4,22 @@
             <div class="col-12">
 
                 <header id="header">
-                    <h1><a href="index.html" id="logo">Minimaxing</a></h1>
+                    <h1><a href="~/Home/Index" id="logo">Minimaxing</a></h1>
                     <nav id="nav">
-                        <a href="index.html">Homepage</a>
-                        <a href="twocolumn1.html" class="current-page-item">Two Column #1</a>
-                        <a href="twocolumn2.html">Two Column #2</a>
-                        <a href="onecolumn.html">One Column</a>
-                        <a href="threecolumn.html">Three Column</a>
+                        <a href="~/Home/Index">Homepage</a>
+                        <a href="~/User/Login">SIGN IN</a>
+                        <a href="~/User/Registration">SIGN UP</a>
+                        <a href ="~/User/Logout">Logout</a>
+                        @{ 
+                            if(User.Identity.Name != null)
+                            {
+                                <a>@User.Identity.Name</a>
+                            }
+                            else
+                            {
+                                <a>No entered user</a>
+                            }
+                        }
                     </nav>
                 </header>
 

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +39,12 @@ namespace tourism_club
             services.AddTransient<IGids, EFGids>();
             services.AddTransient<ILocations, EFLocations>();
             services.AddTransient<IUsers, EFUsers>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/User/Login");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,11 +54,13 @@ namespace tourism_club
             {
                 app.UseDeveloperExceptionPage();
             }
-
+           // app.UseMvc();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCookiePolicy();
+
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                     endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
