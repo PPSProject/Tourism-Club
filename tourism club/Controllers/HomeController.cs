@@ -18,12 +18,14 @@ namespace tourism_club.Controllers
         readonly ILocations loc;
         readonly IFrames frames;
         readonly IComments coms;
+        readonly IUsers users;
         public HomeController(AppDBContent context)
         {
             db = context;
             loc = new EFLocations(context);
             frames = new EFFrames(context);
             coms = new EFComments(context);
+            users = new EFUsers(context);
         }
 
         public IActionResult Index()
@@ -33,37 +35,50 @@ namespace tourism_club.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        
         public IActionResult Location(int id)
         {
+            PageModel pageModel = new PageModel();
             if (id == null)
+            {
                 return RedirectToAction("Index");
-
-           
-
+            }
             Location location = loc.getLocation(id);
-
-            string[] arr = location.PathToPhotos.Split(",");
             Frame frame = frames.getFrame(location);
 
-            location.comments = coms.comments(location).ToList();
-
-            string t = User.Identity.Name;
-            //ViewBag.Title = location.LocationTitle;
-            ViewBag.Locationdesc = location.LocationDescription;
-            ViewBag.FrameId = frame.Id;
-            ViewBag.Fotos = arr;
-
-            ViewBag.Comments = location.comments;
-
-            return View(db.frames.ToList());
+            pageModel.location = location;
+            pageModel.frame = frame;
+            pageModel.users = users.users.ToList();
+            pageModel.comments = coms.comments(location).ToList();
+            pageModel.pathToPhotos = location.PathToPhotos.Split(",");
+            return View(pageModel);
         }
 
-        //[HttpPost]
-        //public IActionResult Location()
-        //{
-
-        //}
+        [HttpPost]
+        [Authorize]
+        public IActionResult Location(Comment comm, string action, string comment, int LocationId, int CommentatorId, int Id)
+        {
+            Location location = loc.getLocation(LocationId);
+            comm.Id = default;
+            comm.comment = comment;
+            comm.LocationId = LocationId;
+            comm.CommentatorId = CommentatorId;
+            comm.Location = location;
+            if(action == "addComment")
+            {
+                if(comm.comment != null)
+                {
+                    coms.addComment(comm);
+                   // db.comments.Add(comm);
+                }
+                
+            }
+            if(action == "deleteComment")
+            {
+                coms.deleteComment(Id);
+            }
+            return RedirectToAction("Index");
+        }
 
 
         

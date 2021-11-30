@@ -1,29 +1,64 @@
-﻿@model IEnumerable<tourism_club.Models.Frame>
+﻿
+@model tourism_club.Models.PageModel
 
 
 <h3>@ViewBag.Title</h3>
 <div>
-    @{ 
-        foreach(var fotos in ViewBag.Fotos)
+    @{
+        foreach (var fotos in Model.pathToPhotos)
         {
-           <img src ="@fotos" alt="Sample foto" width=800 height=600/>     
+            <img src="@fotos" alt="Sample foto" width=800 height=600 />
         }
     }
 </div>
 
 <div>
-    <p>@ViewBag.Locationdesc</p>
+    <p>@Model.location.LocationDescription</p>
 </div>
 
 <div>
-    @{
-        foreach (var f in Model)
-        {
-            if (f.Id == ViewBag.FrameId)
+    <iframe src="@Model.frame.source" width="@Model.frame.width" height="@Model.frame.height" style="@Model.frame.style" allowfullscreen="@Model.frame.screen" loading="@Model.frame.loading"></iframe>
+</div>
+
+        <form method="post" action="">
+            <div>
+                <input type="hidden" value="@Model.location.Id" name="LocationId" />
+                 @if (User.Identity.Name != null)
+                 {
+                    <input type="hidden" value="@Model.users.Find(x => x.Name == User.Identity.Name).Id" name="CommentatorId" />
+                 }
+
+                <input type="text" name="comment" />
+                <button name="action" value="addComment">Додати</button>
+            </div>
+
+
+        </form>
+
+
+
+@foreach (var coms in Model.comments)
+{
+    <div class="comments">
+        @{
+            if (Model.users.Find(x => x.Id == coms.CommentatorId).Name == User.Identity.Name)
             {
-                <iframe src="@f.source" width="@f.width" height="@f.height" style="@f.style" allowfullscreen ="@f.screen" loading="@f.loading"></iframe>
+
+                <p>@Model.users.Find(x => x.Id == coms.CommentatorId).Name</p>
+                <p>@coms.comment</p>
+                <form method="post" action="">
+                    <input type="hidden" value="@coms.Id" name="Id" />
+                    <button name="action" value="deleteComment">Видалити</button>
+                </form>
+            }
+            else
+            {
+                <p>@Model.users.Find(x => x.Id == coms.CommentatorId).Name</p>
+                <p>@coms.comment</p>
             }
         }
-    }
-</div>
+
+    </div>
+}
+
 

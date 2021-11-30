@@ -85,14 +85,14 @@ input, select, textarea {
 		width: device-width;
 	}
 
-	body {
-		font-size: 13.5pt;
-		font-family: sans-serif;
-		background-color: #e3e9dc;
-		font-family: 'Ubuntu Condensed', sans-serif;
-		color: #878e83;
-		letter-spacing: -1px;
-	}
+body {
+	font-size: 14pt;
+	font-family: sans-serif;
+	background-color: #e3e9dc;
+	font-family: 'Ubuntu Condensed', sans-serif;
+	color: #000000;
+	letter-spacing: -1px;
+}
 
 	h1, h2, h3, h4 {
 		color: #007897;
@@ -125,11 +125,11 @@ input, select, textarea {
 	}
 
 	p, ul {
-		margin-bottom: 1.25em;
+		margin-bottom: 1em;
 	}
 
 	p {
-		line-height: 1.8em;
+		line-height: 1.5em;
 	}
 
 	strong {

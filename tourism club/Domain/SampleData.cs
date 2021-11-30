@@ -59,23 +59,29 @@ namespace tourism_club.Domain
                  );
 
             }
-            if (!context.comments.Any())
-            {
-                context.comments.AddRange(
-                    new Comment
-                    {
-                        comment = "Там недавно трахались на ратуші, хто зняв?",
-                        LocationId = 1,
-                        CommentatorId = 1
-                    },
-                    new Comment
-                    {
-                        comment = "Продам жигуль недорого",
-                        LocationId = 1,
-                        CommentatorId = 2
-                    }
-                 );
-            }
+            //if (!context.comments.Any())
+            //{
+            //    context.comments.AddRange(
+            //        new Comment
+            //        {
+            //            comment = "Батька наш Бандера!!!",
+            //            LocationId = 1,
+            //            CommentatorId = 1
+            //        },
+            //        new Comment
+            //        {
+            //            comment = "Продам жигуль недорого",
+            //            LocationId = 1,
+            //            CommentatorId = 2
+            //        },
+            //        new Comment
+            //        {
+            //            comment = "Продам жигуль недорого",
+            //            LocationId = 1,
+            //            CommentatorId = 3
+            //        }
+            //     );
+            //}
             context.SaveChanges();
         }
     }
