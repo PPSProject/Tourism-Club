@@ -6,10 +6,9 @@ using tourism_club.Models;
 
 namespace tourism_club.Domain.Interfaces
 {
-    public interface IFrames
+    public interface IRoles
     {
-        Frame getFrame(Location location);
-        void addFrame(Frame frame);
-        void removeFrame(int id);
+        Role getRole(User user);
+        void addRole(Role role);
     }
 }

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<tourism_club.Models.Location>
+
+<div>
+    <a href="/Admin/AddLocation">Додати локацію</a><br />
+</div>
+<br />
+
+    @{ foreach (var loc in Model)
+        {
+            <tr>
+                <td>
+                    @loc.LocationTitle
+                </td>
+                <td>
+                    <a href="~/Admin/EditLocation/@loc.Id">Edit</a><span>|</span><a href="~/Admin/DeleteLocation/@loc.Id">Delete</a><br />
+                </td>
+            </tr>
+        }
+    }
+
+

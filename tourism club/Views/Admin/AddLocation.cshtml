@@ -1,0 +1,26 @@
+﻿
+@model tourism_club.Models.Location
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <input type="text" value="@Model.LocationTitle" name="LocationTitle" />
+        <br />
+        <p>Опис про місцевість:</p>
+        <textarea type="text" rows="10" cols="100" name="LocationDescription">@Model.LocationDescription</textarea>
+    </div>
+    <br />
+    <div>
+        <p>Виберіть фото</p>
+        <input type="file" name="fotos" /><br />
+        <input type="file" name="fotos" /><br />
+        <input type="file" name="fotos" /><br />
+        <input type="file" name="fotos" /><br />
+    </div>
+    <br />
+    <div>
+        <p>Додати місцевість</p>
+        <input type="text" name="usedFrame" />
+    </div>
+
+    <input type="submit" value="Додати" />
+
+</form>

@@ -2,12 +2,16 @@
 @model tourism_club.Models.PageModel
 
 
-<h3>@ViewBag.Title</h3>
+<h3>@Model.location.LocationTitle</h3>
 <div>
     @{
         foreach (var fotos in Model.pathToPhotos)
         {
-            <img src="@fotos" alt="Sample foto" width=800 height=600 />
+            if (fotos != "")
+            {
+                <img src="@fotos" alt="Sample foto" width=800 height=600 /><br />
+            }
+
         }
     }
 </div>
@@ -23,12 +27,15 @@
         <form method="post" action="">
             <div>
                 <input type="hidden" value="@Model.location.Id" name="LocationId" />
-                 @if (User.Identity.Name != null)
-                 {
+                @if (User.Identity.Name != null)
+                {
                     <input type="hidden" value="@Model.users.Find(x => x.Name == User.Identity.Name).Id" name="CommentatorId" />
-                 }
 
-                <input type="text" name="comment" />
+                }
+
+                @*<input type="text" name="comment" />*@
+                <textarea type="text" rows="4" cols="20" name="comment"></textarea>
+                <br />
                 <button name="action" value="addComment">Додати</button>
             </div>
 

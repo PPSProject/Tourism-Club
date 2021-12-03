@@ -20,7 +20,6 @@ namespace tourism_club.Domain.Classes
         public Location getLocation(int id)
         {
             return context.locations.FirstOrDefault(x => x.Id == id);
-            
         }
 
         public void addLocation(Location loc)
@@ -33,7 +32,7 @@ namespace tourism_club.Domain.Classes
             {
                 context.Entry(loc).State = EntityState.Modified;
             }
-            //context.SaveChanges();
+            context.SaveChanges();
         }
 
         public void removeLocation(int id)

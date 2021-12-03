@@ -10,7 +10,9 @@ namespace tourism_club.Domain.Interfaces
     {
         IEnumerable<User> users { get; }
         User getUser(int id);
+        User getUserbyName(string name);
         void addUser(User user);
         void removeUser(int id);
+
     }
 }

@@ -17,9 +17,11 @@ namespace tourism_club.Controllers
     public class UserController : Controller
     {
         private readonly IUsers _users;
-        public UserController(IUsers users)
+        private readonly IRoles _roles;
+        public UserController(IUsers users, IRoles roles)
         {
             _users = users;
+            _roles = roles;
         }
 
         [HttpGet]
@@ -71,6 +73,7 @@ namespace tourism_club.Controllers
             string cond = @"(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)";
             List<User> users = _users.users.ToList();
             User user = new User();
+            Role roles = new Role();
             if (!UserExist(users, Name, mail, password))
             {
                 if(Regex.IsMatch(mail, cond))
@@ -79,6 +82,12 @@ namespace tourism_club.Controllers
                     user.mail = mail;
                     user.password = password;
                     _users.addUser(user);
+
+                    roles.Id = default;
+                    roles.UserId = user.Id;
+                    roles.adminRole = false;
+                    _roles.addRole(roles);
+
                     await Authenticate(user.Name);
                     return RedirectToAction("Index", "Home");
                 }

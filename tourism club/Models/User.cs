@@ -17,5 +17,6 @@ namespace tourism_club.Models
         public string password { get; set; }
         [Required]
         public string mail { get; set; }
+        public Role existadminrole { get; set; }
     }
 }

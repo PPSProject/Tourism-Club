@@ -6,7 +6,7 @@ using tourism_club.Models;
 
 namespace tourism_club.Domain.Interfaces
 {
-    interface ILocations
+    public interface ILocations
     {
         IEnumerable<Location> locations { get; }
         Location getLocation(int id);

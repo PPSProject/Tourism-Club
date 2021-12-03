@@ -94,7 +94,7 @@ namespace tourism_club.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LocationId = table.Column<int>(type: "int", nullable: false),
-                    CommentatorId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CommentatorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -107,10 +107,36 @@ namespace tourism_club.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "roles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    adminRole = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_roles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_roles_users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_comments_LocationId",
                 table: "comments",
                 column: "LocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_roles_UserId",
+                table: "roles",
+                column: "UserId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -128,10 +154,13 @@ namespace tourism_club.Migrations
                 name: "gids");
 
             migrationBuilder.DropTable(
-                name: "users");
+                name: "roles");
 
             migrationBuilder.DropTable(
                 name: "locations");
+
+            migrationBuilder.DropTable(
+                name: "users");
         }
     }
 }

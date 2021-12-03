@@ -39,6 +39,7 @@ namespace tourism_club
             services.AddTransient<IGids, EFGids>();
             services.AddTransient<ILocations, EFLocations>();
             services.AddTransient<IUsers, EFUsers>();
+            services.AddTransient<IRoles, EFRoles>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
@@ -58,7 +59,7 @@ namespace tourism_club
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCookiePolicy();
-
+            
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

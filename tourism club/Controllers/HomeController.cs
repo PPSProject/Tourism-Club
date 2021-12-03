@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,14 +30,14 @@ namespace tourism_club.Controllers
             users = new EFUsers(context);
         }
 
-        public IActionResult Index()
+        public  IActionResult Index()
         {
 
+            
             return View(db.locations.ToList());
         }
 
         [HttpGet]
-        
         public IActionResult Location(int id)
         {
             PageModel pageModel = new PageModel();
@@ -79,9 +81,6 @@ namespace tourism_club.Controllers
             }
             return RedirectToAction("Index");
         }
-
-
-        
 
     }
 }

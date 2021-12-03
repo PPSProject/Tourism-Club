@@ -8,14 +8,18 @@
 
     @{ foreach (var loc in Model)
         {
-            <tr>
-                <td>
-                    @loc.LocationTitle
-                </td>
-                <td>
-                    <a href ="~/Home/Location/@loc.Id">Watch</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @loc.LocationTitle
+            </td>
+            <td>
+                <img src="@loc.PathToPhotos.Split(",")[0].ToString()" alt="Sample foto" width=200 height=200 />
+            </td>
+
+            <td>
+                <a href="~/Home/Location/@loc.Id">Watch</a>
+            </td>
+        </tr>
         }
     }
 

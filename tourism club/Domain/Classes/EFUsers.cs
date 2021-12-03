@@ -36,6 +36,19 @@ namespace tourism_club.Domain.Classes
             return context.users.FirstOrDefault(x => x.Id == id);
         }
 
+        public User getUserbyName(string name)
+        {
+            if(name != null)
+            {
+                return context.users.FirstOrDefault(x => x.Name == name);
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+
         public void removeUser(int id)
         {
             context.users.Remove(new User() { Id = id });

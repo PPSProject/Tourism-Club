@@ -9,9 +9,10 @@
                         <a href="~/Home/Index">Homepage</a>
                         <a href="~/User/Login">SIGN IN</a>
                         <a href="~/User/Registration">SIGN UP</a>
-                        <a href ="~/User/Logout">Logout</a>
-                        @{ 
-                            if(User.Identity.Name != null)
+                        <a href="~/Admin/ChooseEdit">Admin panel</a>
+                        <a href="~/User/Logout">Logout</a>
+                        @{
+                            if (User.Identity.Name != null)
                             {
                                 <a>@User.Identity.Name</a>
                             }

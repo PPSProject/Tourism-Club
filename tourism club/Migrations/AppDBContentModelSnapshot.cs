@@ -46,8 +46,8 @@ namespace tourism_club.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CommentatorId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CommentatorId")
+                        .HasColumnType("int");
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
@@ -143,6 +143,27 @@ namespace tourism_club.Migrations
                     b.ToTable("locations");
                 });
 
+            modelBuilder.Entity("tourism_club.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("adminRole")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("roles");
+                });
+
             modelBuilder.Entity("tourism_club.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -178,9 +199,23 @@ namespace tourism_club.Migrations
                     b.Navigation("Location");
                 });
 
+            modelBuilder.Entity("tourism_club.Models.Role", b =>
+                {
+                    b.HasOne("tourism_club.Models.User", null)
+                        .WithOne("existadminrole")
+                        .HasForeignKey("tourism_club.Models.Role", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("tourism_club.Models.Location", b =>
                 {
                     b.Navigation("comments");
+                });
+
+            modelBuilder.Entity("tourism_club.Models.User", b =>
+                {
+                    b.Navigation("existadminrole");
                 });
 #pragma warning restore 612, 618
         }

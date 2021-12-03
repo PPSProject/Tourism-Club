@@ -1,0 +1,29 @@
+﻿
+@model tourism_club.Models.PageAdminModel
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <input type="text" value="@Model.location.LocationTitle" name="LocationTitle" />
+        <br />
+        <input type="hidden" value="@Model.location.Id" name="LocId"/>
+        <p>Опис про місцевість:</p>
+        <textarea type="text" rows="10" cols="100" name="LocationDescription">@Model.location.LocationDescription</textarea>
+    </div>
+    <br />
+    <div>
+        <input type="hidden" value="@Model.location.PathToPhotos"  name="PathToFotos"/>
+        <p>Виберіть фото(Бажано не чіпати)</p>
+        <input type="file" name="fotos" /><br />
+        <input type="file" name="fotos" /><br />
+        <input type="file" name="fotos" /><br />
+        <input type="file" name="fotos" /><br />
+    </div>
+    <br />
+    <div>
+        <p>Додати місцевість</p>
+        <input type="hidden" value="@Model.frame.Id" name="FrId"/>
+        <textarea rows="10" cols="100" type="text" name="usedFrame" > src="@Model.frame.source" width="@Model.frame.width" height="@Model.frame.height" style="@Model.frame.style" allowfullscreen="@Model.frame.screen" loading="@Model.frame.loading"</textarea>
+    </div>
+
+    <input type="submit" value="Змінити" />
+
+</form>
