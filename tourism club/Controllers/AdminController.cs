@@ -180,6 +180,24 @@ namespace tourism_club.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-        
+
+        [HttpGet]
+        public IActionResult DeleteLocation(int id)
+        {
+            if (AreYouAdmin())
+            {
+                Location location = _locations.getLocation(id);
+                Frame frame = _frames.getFrame(location);
+
+                PageAdminModel pageAdminModel = new PageAdminModel();
+                pageAdminModel.location = location;
+                pageAdminModel.frame = frame;
+                return View(pageAdminModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }
