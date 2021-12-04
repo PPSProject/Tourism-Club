@@ -50,10 +50,11 @@
         @{
             if (Model.users.Find(x => x.Id == coms.CommentatorId).Name == User.Identity.Name)
             {
-
+               
                 <p>@Model.users.Find(x => x.Id == coms.CommentatorId).Name</p>
                 <p>@coms.comment</p>
                 <form method="post" action="">
+                    <input type ="hidden" value="@Model.location.Id" name="LocationId"/>
                     <input type="hidden" value="@coms.Id" name="Id" />
                     <button name="action" value="deleteComment">Видалити</button>
                 </form>

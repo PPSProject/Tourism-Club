@@ -69,6 +69,8 @@ namespace tourism_club.Controllers
         public IActionResult Location(Comment comm, string action, string comment, int LocationId, int CommentatorId, int Id)
         {
             Location location = loc.getLocation(LocationId);
+            location.Id = LocationId;
+
             comm.Id = default;
             comm.comment = comment;
             comm.LocationId = LocationId;
