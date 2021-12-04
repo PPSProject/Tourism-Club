@@ -1,0 +1,16 @@
+﻿@model tourism_club.Models.User
+
+<form method="post">
+    <h3>Підтвердіть видалення користувача</h3>
+    <input type="hidden" value="@Model.Id" name="UserId" />
+
+    <div>
+        <input readonly type="text" value="@Model.Name"/>
+        <br />
+        <input readonly type="text" value="@Model.mail"/>
+        <br />
+        <input type="submit" value="Видалити"/>
+    </div>
+
+</form>
+

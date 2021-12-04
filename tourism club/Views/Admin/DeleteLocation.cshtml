@@ -1,1 +1,38 @@
 ﻿
+
+
+
+@model tourism_club.Models.PageAdminModel
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <input type="text" value="@Model.location.LocationTitle" name="LocationTitle" readonly />
+        <br />
+        <input type="hidden" value="@Model.location.Id" name="LocId" />
+        @{
+            foreach (var fotos in ViewBag.fotoss)
+            {
+                if (fotos != "")
+                {
+                    <img src="@fotos" alt="Sample foto" width=800 height=600 /><br />
+                }
+
+            }
+        }
+        <p>Опис про місцевість:</p>
+        <textarea readonly type="text" rows="10" cols="100" name="LocationDescription">@Model.location.LocationDescription</textarea>
+    </div>
+    <br />
+    <div>
+        <input type="hidden" value="@Model.location.PathToPhotos" name="PathToFotos" />
+    </div>
+    <br />
+    <div>
+        <p>Додати місцевість</p>
+        <input type="hidden" value="@Model.frame.Id" name="FrId" />
+        <textarea readonly rows="10" cols="100" type="text" name="usedFrame"> src="@Model.frame.source" width="@Model.frame.width" height="@Model.frame.height" style="@Model.frame.style" allowfullscreen="@Model.frame.screen" loading="@Model.frame.loading"</textarea>
+    </div>
+
+    <input type="submit" value="Видалити" />
+
+</form>
+

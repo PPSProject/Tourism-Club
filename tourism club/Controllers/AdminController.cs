@@ -26,14 +26,16 @@ namespace tourism_club.Controllers
         private readonly IUsers _users;
         private readonly IRoles _roles;
         private readonly IFrames _frames;
+        private readonly IComments _comments;
         IWebHostEnvironment _appEnvironment;
-        public AdminController(IUsers users, IRoles roles, IFrames frames, IWebHostEnvironment appEnvironment, ILocations locations)
+        public AdminController(IUsers users, IRoles roles, IFrames frames, IWebHostEnvironment appEnvironment, ILocations locations, IComments comments)
         {
             _users = users;
             _roles = roles;
             _frames = frames;
             _appEnvironment = appEnvironment;
             _locations = locations;
+            _comments = comments;
         }
         bool AreYouAdmin()
         {
@@ -54,7 +56,21 @@ namespace tourism_club.Controllers
             
             if (AreYouAdmin())
             {
-                return View(_locations.locations);
+                PageChooseAdminModel model = new PageChooseAdminModel();
+                model.users = new List<User>();
+                List<User> AllUsers = _users.users.ToList();
+
+                foreach(var u in AllUsers)
+                {
+                    u.existadminrole = _roles.getRole(u);
+                    if(u.existadminrole.adminRole == false)
+                    {
+                        model.users.Add(u); 
+                    }
+                }
+                model.locations = _locations.locations;
+
+                return View(model);
             }
             else
             {
@@ -192,12 +208,67 @@ namespace tourism_club.Controllers
                 PageAdminModel pageAdminModel = new PageAdminModel();
                 pageAdminModel.location = location;
                 pageAdminModel.frame = frame;
+                ViewBag.fotoss = location.PathToPhotos.Split(",");
                 return View(pageAdminModel);
             }
             else
             {
                 return RedirectToAction("Index", "Home");
             }
+        }
+        [HttpPost]
+        public IActionResult DeleteLocation(string LocationTitle, string LocationDescription, int LocId, string PathToFotos, int FrId, string usedFrame)
+        {
+            Location location = new Location();
+            location.Id = LocId;
+            location.LocationDescription = LocationDescription;
+            location.LocationTitle = LocationTitle;
+            location.PathToPhotos = PathToFotos;
+
+
+            Frame frame = Parse.returnFrame(usedFrame);
+            frame.Id = FrId;
+            frame.LocationId = location.Id;
+
+            location.comments = _comments.comments(location).ToList();
+
+            _comments.deleteComment(location.comments);
+            
+            _frames.removeFrame(location);
+            _locations.removeLocation(location.Id);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteAccount(int id)
+        {
+            if (AreYouAdmin())
+            {
+                User user = _users.getUser(id);
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        [HttpPost]
+        public IActionResult DeleteAccount(int UserId, string Name)
+        {
+            List<Comment> allComments = _comments.Allcomments.ToList();
+            List<Comment> commentsOfUser = new List<Comment>();
+            foreach (var com in allComments)
+            {
+                if(com.CommentatorId == UserId)
+                {
+                    commentsOfUser.Add(com);
+                }
+            }
+            _comments.deleteComment(commentsOfUser);
+            _users.removeUser(UserId);
+            return RedirectToAction("ChooseEdit", "Admin");
+
         }
     }
 }

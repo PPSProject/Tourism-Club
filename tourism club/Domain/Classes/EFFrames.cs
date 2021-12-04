@@ -35,9 +35,10 @@ namespace tourism_club.Domain.Classes
             return (Frame)context.frames.FirstOrDefault(x => x.LocationId == location.Id);
         }
 
-        public void removeFrame(int id)
+        public void removeFrame(Location location)
         {
-            context.frames.Remove(new Frame() { Id = id });
+            Frame frame = (Frame)context.frames.FirstOrDefault(x => x.LocationId == location.Id);
+            context.frames.Remove(frame);
             context.SaveChanges();
         }
     }

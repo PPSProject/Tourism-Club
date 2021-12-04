@@ -44,7 +44,6 @@ namespace tourism_club.Controllers
                 ModelState.AddModelError("", "Дані не вірні");
                 return View();
             }
-            
         }
         bool CorrectDatas(List<User> users, string name, string pass)
         {

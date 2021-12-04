@@ -16,6 +16,7 @@ namespace tourism_club.Domain.Classes
         {
             this.context = context;
         }
+        public IEnumerable<Comment> Allcomments => context.comments;
         public IEnumerable<Comment> comments(Location location)
         {
             return context.comments.Where(c => c.LocationId == location.Id).OrderBy(c=>c.LocationId);
@@ -40,6 +41,14 @@ namespace tourism_club.Domain.Classes
             //Пояснення
             //https://qastack.ru/programming/2471433/how-to-delete-an-object-by-id-with-entity-framework
             context.comments.Remove(new Comment() { Id = id });
+            context.SaveChanges();
+        }
+        public void deleteComment(List<Comment> coms)
+        {
+            foreach(var r in coms)
+            {
+                context.comments.Remove(r);
+            }
             context.SaveChanges();
         }
     }

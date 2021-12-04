@@ -10,6 +10,6 @@ namespace tourism_club.Domain.Interfaces
     {
         Frame getFrame(Location location);
         void addFrame(Frame frame);
-        void removeFrame(int id);
+        void removeFrame(Location location);
     }
 }

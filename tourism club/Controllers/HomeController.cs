@@ -21,6 +21,7 @@ namespace tourism_club.Controllers
         readonly IFrames frames;
         readonly IComments coms;
         readonly IUsers users;
+        readonly IRoles roles;
         public HomeController(AppDBContent context)
         {
             db = context;
@@ -28,12 +29,19 @@ namespace tourism_club.Controllers
             frames = new EFFrames(context);
             coms = new EFComments(context);
             users = new EFUsers(context);
+            roles = new EFRoles(context);
         }
 
         public  IActionResult Index()
         {
+            ViewBag.boolAdmin = false;
+            if (User.Identity.Name != null)
+            {
+                User user = users.getUserbyName(User.Identity.Name);
+                user.existadminrole = roles.getRole(user);
+                ViewBag.boolAdmin = user.existadminrole.adminRole;
+            }
 
-            
             return View(db.locations.ToList());
         }
 
@@ -79,7 +87,16 @@ namespace tourism_club.Controllers
             {
                 coms.deleteComment(Id);
             }
-            return RedirectToAction("Index");
+            
+            Frame frame = frames.getFrame(location);
+            PageModel pageModel = new PageModel();
+            pageModel.location = location;
+            pageModel.frame = frame;
+            pageModel.users = users.users.ToList();
+            pageModel.comments = coms.comments(location).ToList();
+            pageModel.pathToPhotos = location.PathToPhotos.Split(",");
+
+            return View(pageModel);
         }
 
     }

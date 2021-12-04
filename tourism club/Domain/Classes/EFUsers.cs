@@ -12,11 +12,15 @@ namespace tourism_club.Domain.Classes
     public class EFUsers : IUsers
     {
         private readonly AppDBContent context;
+
         public EFUsers(AppDBContent context)
         {
             this.context = context;
         }
+
         public IEnumerable<User> users => context.users;
+
+
 
         public void addUser(User user)
         {

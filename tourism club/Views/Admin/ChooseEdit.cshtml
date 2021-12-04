@@ -1,21 +1,43 @@
-﻿@model IEnumerable<tourism_club.Models.Location>
+﻿@model tourism_club.Models.PageChooseAdminModel
 
 <div>
     <a href="/Admin/AddLocation">Додати локацію</a><br />
 </div>
 <br />
-
-    @{ foreach (var loc in Model)
-        {
-            <tr>
-                <td>
-                    @loc.LocationTitle
-                </td>
-                <td>
-                    <a href="~/Admin/EditLocation/@loc.Id">Edit</a><span>|</span><a href="~/Admin/DeleteLocation/@loc.Id">Delete</a><br />
-                </td>
-            </tr>
-        }
+<h3>Локації</h3>
+@{ foreach (var loc in Model.locations)
+    {
+    <tr>
+        <td>
+            @loc.LocationTitle
+        </td>
+        &nbsp
+        <td>
+            <a href="~/Admin/EditLocation/@loc.Id">Edit</a><span>|</span><a href="~/Admin/DeleteLocation/@loc.Id">Delete</a><br />
+        </td>
+    </tr>
     }
+}
+<br />
+<a>-----------------------------------------------------------------------------------------------------------------------------------------------------</a>
+<br />
+<h3>Користувачі</h3>
+@{ foreach (var u in Model.users)
+    {
+    <tr>
+        <td>
+            @u.Name
+        </td>
+        &nbsp
+        <td>
+            @u.mail
+        </td>
+        &nbsp
+        <td>
+            <a href="~/Admin/DeleteAccount/@u.Id">Delete account</a>
+        </td>
+    </tr>
+    }
+}
 
 
