@@ -1,38 +1,43 @@
-﻿<div id="header-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-
-                <header id="header">
-                    <h1><a href="~/Home/Index" id="logo">Tourism Club</a></h1>
-                    <nav id="nav">
-                        <a href="~/Home/Index">Homepage</a>
-                        <a href="~/User/Login">SIGN IN</a>
-                        <a href="~/User/Registration">SIGN UP</a>
-                        @{
-                            if (ViewBag.boolAdmin != null)
-                            {
-                                if (ViewBag.boolAdmin)
-                                {
-                                    <a href="~/Admin/ChooseEdit">Admin panel</a>
-                                }
-                            }
+﻿
+<header>
+    <nav class="whole-place centring">
+        <ul id="navigationList" class="ollcenter centring">
+            <li>
+                <a href="~/Home/Index"><img class="ph-home" src="images/63633.png" /> Tourism Club</a>
+            </li>
+            <li>
+                <a href="~/User/Login">SIGN IN</a>
+            </li>
+            <li>
+                <a href="~/User/Registration">SIGN UP</a>
+            </li>
+            <li>
+                @{
+                    if (ViewBag.boolAdmin != null)
+                    {
+                        if (ViewBag.boolAdmin)
+                        {
+                            <a href="~/Admin/ChooseEdit">Admin panel</a>
                         }
-                        <a href="~/User/Logout">Logout</a>
-                        @{
-                            if (User.Identity.Name != null)
-                            {
-                                <a>@User.Identity.Name</a>
-                            }
-                            else
-                            {
-                                <a>No entered user</a>
-                            }
-                        }
-                    </nav>
-                </header>
-
-            </div>
-        </div>
-    </div>
-</div>
+                    }
+                }
+            </li>
+            <li>
+                <a href="~/User/Logout">Logout</a>
+            </li>
+            <!--- <li><a href="admin.html">Панель Адміністратора</a></li>-->
+            <li>
+                @{
+                    if (User.Identity.Name != null)
+                    {
+                        <a>@User.Identity.Name</a>
+                    }
+                    else
+                    {
+                        <a>No entered user</a>
+                    }
+                }
+            </li>
+        </ul>
+    </nav>
+</header>

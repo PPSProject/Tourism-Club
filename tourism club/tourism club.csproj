@@ -34,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\sass\" />
   </ItemGroup>
 
@@ -49,6 +48,8 @@
     <None Include="Views\Shared\ScriptsPartial.cshtml" />
     <None Include="Views\Shared\SidebarPartical.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="wwwroot\js\comment.js" />
+    <None Include="wwwroot\js\header.js" />
   </ItemGroup>
 
   <ItemGroup>

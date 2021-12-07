@@ -1,31 +1,32 @@
 ﻿@model IEnumerable<tourism_club.Models.Location>
-
-<h3>Locations</h3>
-
 <br />
 
-<table>
 
-    @{ foreach (var loc in Model)
-        {
-        <tr>
-            <td>
-                @loc.LocationTitle
-            </td>
-            <td>
-                <img src="@loc.PathToPhotos.Split(",")[0].ToString()" alt="Sample foto" width=200 height=200 />
-            </td>
+<h1 id="mainText" class="centring centringpading">
+    Красиві місця України
+</h1>
 
-            <td>
-                <a href="~/Home/Location/@loc.Id">Watch</a>
-            </td>
-        </tr>
+<div id="mainContent" class="centringpading">
+    <section id="gridSection">
+        @{
+            foreach (var loc in Model)
+            {
+                <article class="centringpading">
+                    <a href="~/Home/Location/@loc.Id">
+                        <img class="imgStyle" src="@loc.PathToPhotos.Split(",")[0].ToString()" />
+
+
+                        <div>
+                            @loc.LocationTitle
+                        </div>
+                    </a>
+                </article>
+            }
         }
-    }
-
-</table>
 
 
 
+    </section>
+</div>
 
 

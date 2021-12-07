@@ -2,71 +2,55 @@
 @model tourism_club.Models.PageModel
 
 
-<h3>@Model.location.LocationTitle</h3>
-<div>
+
+
+<div class="name centring">
+    <h1>@Model.location.LocationTitle</h1>
+</div>
+<div class="photo centring">
     @{
         foreach (var fotos in Model.pathToPhotos)
         {
             if (fotos != "")
             {
-                <img src="@fotos" alt="Sample foto" width=800 height=600 /><br />
+                <img src="@fotos" alt="Sample foto"/><br />
             }
 
         }
     }
 </div>
-
-<div>
-    <p>@Model.location.LocationDescription</p>
+<div class="description  centringpading">
+    <p>
+       @Model.location.LocationDescription
+    </p>
+</div>
+<div class="map centring"><iframe src="@Model.frame.source" width="@Model.frame.width" height="@Model.frame.height" style="@Model.frame.style" allowfullscreen="@Model.frame.screen" loading="@Model.frame.loading"></iframe><img src="images\asdf.png" alt="">
 </div>
 
-<div>
-    <iframe src="@Model.frame.source" width="@Model.frame.width" height="@Model.frame.height" style="@Model.frame.style" allowfullscreen="@Model.frame.screen" loading="@Model.frame.loading"></iframe>
+<div class="comments centringpading">
+    <fieldset>
+        <legend>Коментарі</legend>
+        <div class="addNewComments centring">
+            <form method="post" action="">
+                <div>
+                    <input type="hidden" value="@Model.location.Id" name="LocationId" />
+                    @if (User.Identity.Name != null)
+                    {
+                        <input type="hidden" value="@Model.users.Find(x => x.Name == User.Identity.Name).Id" name="CommentatorId" />
+
+                    }
+
+                    @*<input type="text" name="comment" />*@
+                    <textarea type="text" rows="4" cols="20" name="comment"></textarea>
+                    <br />
+                    <button name="action" value="addComment" onclick="deleteComent(event);" >Додати</button>
+                </div>
+
+
+            </form>
+        </div>
+        @await Html.PartialAsync("Comments", Model); 
+       
+
+    </fieldset>
 </div>
-
-        <form method="post" action="">
-            <div>
-                <input type="hidden" value="@Model.location.Id" name="LocationId" />
-                @if (User.Identity.Name != null)
-                {
-                    <input type="hidden" value="@Model.users.Find(x => x.Name == User.Identity.Name).Id" name="CommentatorId" />
-
-                }
-
-                @*<input type="text" name="comment" />*@
-                <textarea type="text" rows="4" cols="20" name="comment"></textarea>
-                <br />
-                <button name="action" value="addComment">Додати</button>
-            </div>
-
-
-        </form>
-
-
-
-@foreach (var coms in Model.comments)
-{
-    <div class="comments">
-        @{
-            if (Model.users.Find(x => x.Id == coms.CommentatorId).Name == User.Identity.Name)
-            {
-               
-                <p>@Model.users.Find(x => x.Id == coms.CommentatorId).Name</p>
-                <p>@coms.comment</p>
-                <form method="post" action="">
-                    <input type ="hidden" value="@Model.location.Id" name="LocationId"/>
-                    <input type="hidden" value="@coms.Id" name="Id" />
-                    <button name="action" value="deleteComment">Видалити</button>
-                </form>
-            }
-            else
-            {
-                <p>@Model.users.Find(x => x.Id == coms.CommentatorId).Name</p>
-                <p>@coms.comment</p>
-            }
-        }
-
-    </div>
-}
-
-

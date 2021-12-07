@@ -40,8 +40,16 @@ namespace tourism_club.Domain.Classes
         {
             //Пояснення
             //https://qastack.ru/programming/2471433/how-to-delete-an-object-by-id-with-entity-framework
-            context.comments.Remove(new Comment() { Id = id });
-            context.SaveChanges();
+            try
+            {
+                context.comments.Remove(new Comment() { Id = id });
+                context.SaveChanges();
+            }
+            catch(Exception)
+            {
+
+            }
+            
         }
         public void deleteComment(List<Comment> coms)
         {

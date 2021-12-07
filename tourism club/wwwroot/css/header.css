@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #000000a4; 
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed  ;
+    z-index: 1;
+    background-color:rgb(80, 80, 80);
+    font-size: 1vw;
+    font-stretch:ultra-condensed;
+    font-weight: 100;
+    font-family:sans-serif;
+    z-index: 100;
+}
+
+header *{
+    text-decoration:none;
+    color: #bbb9b9;
+    letter-spacing: 2px;
+}
+
+#navigationList {
+    height: 100%;
+    width: 60%;
+}
+
+@keyframes ONLOAD {
+    from {font-size: 0;}
+    40% {font-size: 0;}
+}
+#navigationList>li {
+    height: 80%;
+    width: 100%;
+    margin: 10px, 20px;
+    display: inline;
+    margin-left: 1%;
+    margin-right: 1%;
+   
+    animation-name: ONLOAD;
+    animation-duration: 0.6s;
+    animation-timing-function: ease;
+    z-index: 1;
+}
+
+.style-summary {
+    list-style: none;
+}
+
+#navigationList>li a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color:rgb(80, 80, 80);
+}
+
+#toursList[open]>a {
+    background-color:rgb(80, 80, 80);
+}
+details[open]>a:last-child{
+    border-end-end-radius: 10px;
+    border-end-start-radius: 10px;
+
+}
+@keyframes reloadIco {
+    from {transform: scaleY(0);}
+    to {transform: scaleY(-1);}
+}
+details[open] img {
+    animation-fill-mode: forwards;
+    animation-name: reloadIco;
+    animation-duration: 0.7s;
+    animation-timing-function: ease;
+}
+@keyframes openlist {
+    to {font-size: 110%;}
+}
+@keyframes hoverlink {
+    to {color:rgb(255, 255, 255);}
+}
+header a:hover,summary:hover ,#toursList a:hover{
+    animation-fill-mode: forwards;
+    animation-name: hoverlink,openlist;
+    animation-duration: 0.3s;
+    animation-timing-function: ease;
+}
+
+.whole-place {
+    /* збільшення розмірів*/
+    height: 100%;
+    width: 100%;
+}
+
+
+/*-------------налаштування фоток*/
+
+.ph-home {
+    height: 50%;
+    margin-right: 5px;
+}
+
+.ph-galc {
+   height: 40%;
+    border-radius: 0;
+    border: 0 solid black;
+    margin-right: 5%;
+}
+

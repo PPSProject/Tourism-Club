@@ -7,25 +7,14 @@
 <body>
     <div id="page-wrapper">
 
-
         @await Html.PartialAsync("HeaderPartial")
-
         <!-- Main -->
-        <div id="main">
-            <div class="container">
-                <div class="row main-row">
-
-                    <div class="col-8 col-12-medium">
-                        @RenderBody()
-                    </div>
-                    @*@await Html.PartialAsync("SidebarPartical")*@
-                </div>
-            </div>
-        </div>
-
+        <main>
+            @RenderBody()
+        </main>
+              
+                   
         @await Html.PartialAsync("FooterPartial")
-
-        
 
     </div>
 

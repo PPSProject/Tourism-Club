@@ -66,7 +66,7 @@ namespace tourism_club.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Location(Comment comm, string action, string comment, int LocationId, int CommentatorId, int Id)
+        public ActionResult Location(Comment comm, string action, string comment, int LocationId, int CommentatorId, int Id)
         {
             Location location = loc.getLocation(LocationId);
             location.Id = LocationId;
@@ -100,6 +100,7 @@ namespace tourism_club.Controllers
 
             return View(pageModel);
         }
+       
 
     }
 }
