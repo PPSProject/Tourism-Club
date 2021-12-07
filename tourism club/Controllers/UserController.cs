@@ -23,7 +23,6 @@ namespace tourism_club.Controllers
             _users = users;
             _roles = roles;
         }
-
         [HttpGet]
         public IActionResult Login()
         {
@@ -56,13 +55,11 @@ namespace tourism_club.Controllers
             }
             return false;
         }
-
-
-
         [HttpGet]
         public IActionResult Registration()
         {
-            return View();
+            User user = new User();
+            return View(user);
         }
 
         [HttpPost]
@@ -72,16 +69,17 @@ namespace tourism_club.Controllers
             string cond = @"(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)";
             List<User> users = _users.users.ToList();
             User user = new User();
-            Role roles = new Role();
+
+            user.Name = Name;
+            user.mail = mail;
+            user.password = password;
             if (!UserExist(users, Name, mail, password))
             {
                 if(Regex.IsMatch(mail, cond))
                 {
-                    user.Name = Name;
-                    user.mail = mail;
-                    user.password = password;
                     _users.addUser(user);
 
+                    Role roles = new Role();
                     roles.Id = default;
                     roles.UserId = user.Id;
                     roles.adminRole = false;
@@ -92,15 +90,15 @@ namespace tourism_club.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return View(user);
                 }
                 
             }
             else
             {
-                
+                return View(user);
             }
-            return View(user);
+            //return View(user);
         }
         bool UserExist(List<User> users, string name, string mail, string password)
         {

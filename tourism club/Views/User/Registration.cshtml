@@ -1,4 +1,5 @@
-﻿<h3>Реєстрація</h3>
+﻿@model tourism_club.Models.User
+<h3>Реєстрація</h3>
 <br />
 
 <form method="post" action="">
@@ -6,16 +7,16 @@
         <tbody>
             <tr>
                 <td>Введіть ім'я користувача</td>
-                <td><input type="text" name="Name" /></td>
+                <td><input type="text" value="@Model.Name" name="Name" /></td>
             </tr>
             <tr>
                 <td>Введіть пошту</td>
-                <td><input type="text" name="mail" /></td>
+                <td><input type="text" value="@Model.mail" name="mail" /></td>
 
             </tr>
             <tr>
                 <td>Створіть пароль</td>
-                <td><input type="password" name="password" /></td>
+                <td><input type="password" value="@Model.password" name="password" /></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Зареєструватись" /></td>
