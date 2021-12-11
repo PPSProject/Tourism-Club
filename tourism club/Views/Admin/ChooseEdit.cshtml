@@ -7,15 +7,15 @@
 <h3>Локації</h3>
 @{ foreach (var loc in Model.locations)
     {
-    <tr>
-        <td>
-            @loc.LocationTitle
-        </td>
-        &nbsp
-        <td>
-            <a href="~/Admin/EditLocation/@loc.Id">Edit</a><span>|</span><a href="~/Admin/DeleteLocation/@loc.Id">Delete</a><br />
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @loc.LocationTitle
+            </td>
+            &nbsp
+            <td>
+                <a href="~/Admin/EditLocation/@loc.Id">Edit</a><span>|</span><a href="~/Admin/DeleteLocation/@loc.Id">Delete</a><br />
+            </td>
+        </tr>
     }
 }
 <br />
@@ -24,19 +24,21 @@
 <h3>Користувачі</h3>
 @{ foreach (var u in Model.users)
     {
-    <tr>
-        <td>
-            @u.Name
-        </td>
-        &nbsp
-        <td>
-            @u.mail
-        </td>
-        &nbsp
-        <td>
-            <a href="~/Admin/DeleteAccount/@u.Id">Delete account</a>
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @u.Name
+            </td>
+            &nbsp
+            <td>
+                @u.mail
+            </td>
+            &nbsp
+            <td>
+                <a href="~/Admin/DeleteAccount/@u.Id">Delete account</a>
+            </td>
+
+        </tr>
+        <br />
     }
 }
 
