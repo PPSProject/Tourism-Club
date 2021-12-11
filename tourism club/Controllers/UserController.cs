@@ -26,12 +26,14 @@ namespace tourism_club.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.Reg = true;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string Name, string password)
         {
+            
             List<User> users = _users.users.ToList();
             if (CorrectDatas(users, Name, password))
             {
@@ -58,6 +60,7 @@ namespace tourism_club.Controllers
         [HttpGet]
         public IActionResult Registration()
         {
+            
             User user = new User();
             return View(user);
         }

@@ -5,26 +5,46 @@
             <li>
                 <a href="~/Home/Index"><img class="ph-home" src="images/63633.png" /> Tourism Club</a>
             </li>
-            <li>
-                <a href="~/User/Login">SIGN IN</a>
-            </li>
-            <li>
-                <a href="~/User/Registration">SIGN UP</a>
-            </li>
-            <li>
-                @{
-                    if (ViewBag.boolAdmin != null)
+
+            
+            @{
+                if (ViewBag.Reg != null)
+                {
+                    if (ViewBag.Reg)
                     {
-                        if (ViewBag.boolAdmin)
-                        {
-                            <a href="~/Admin/ChooseEdit">Admin panel</a>
-                        }
+                        <li>
+                            <a href="~/User/Registration">SIGN UP</a>
+                        </li>
+
                     }
                 }
-            </li>
-            <li>
-                <a href="~/User/Logout">Logout</a>
-            </li>
+            }
+            @{
+                if (User.Identity.Name != null)
+                {
+                    <li>
+                        <a href="~/User/Logout">Logout</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="~/User/Login">SIGN IN</a>
+                    </li>
+                }
+            }
+            @{
+                if (ViewBag.boolAdmin != null)
+                {
+                    if (ViewBag.boolAdmin)
+                    {
+                        <li><a href="~/Admin/ChooseEdit">Admin panel</a> </li>
+
+                    }
+                }
+            }
+
+
             <!--- <li><a href="admin.html">Панель Адміністратора</a></li>-->
             <li>
                 @{
