@@ -110,6 +110,10 @@ namespace tourism_club.Controllers
         }
         bool UserExist(List<User> users, string name, string mail, string password)
         {
+            if(name == null || mail == null || password == null)
+            {
+                return true;
+            }
             foreach(var u in users)
             {
                 if(u.Name == name || u.mail == mail)
@@ -121,6 +125,10 @@ namespace tourism_club.Controllers
         }
         string Problem(List<User> users, string name, string mail, string password)
         {
+            if(name == null || mail == null || password == null)
+            {
+                return "Не всі поля заповнені";
+            }
             foreach (var u in users)
             {
                 if (u.Name == name || u.mail == mail)
