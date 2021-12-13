@@ -26,14 +26,17 @@ namespace tourism_club.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            User user = new User();
             ViewBag.Reg = true;
-            return View();
+            return View(user);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string Name, string password)
         {
-            
+            User user = new User();
+            user.Name = Name;
+            user.password = password;
             List<User> users = _users.users.ToList();
             if (CorrectDatas(users, Name, password))
             {
@@ -42,8 +45,8 @@ namespace tourism_club.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Дані не вірні");
-                return View();
+                ViewBag.data = "Дані для авторизації не вірні";
+                return View(user);
             }
         }
         bool CorrectDatas(List<User> users, string name, string pass)
@@ -93,12 +96,14 @@ namespace tourism_club.Controllers
                 }
                 else
                 {
+                    ViewBag.mail = "Пошта введена некорректно";
                     return View(user);
                 }
                 
             }
             else
             {
+                ViewBag.fix = Problem(users, Name, mail, password);
                 return View(user);
             }
             //return View(user);
@@ -114,6 +119,25 @@ namespace tourism_club.Controllers
             }
             return false;
         }
+        string Problem(List<User> users, string name, string mail, string password)
+        {
+            foreach (var u in users)
+            {
+                if (u.Name == name || u.mail == mail)
+                {
+                    if(u.Name == name)
+                    {
+                        return "Користувач з таким нікнеймом вже існує";
+                    }
+                    else
+                    {
+                        return "Користувач з такою поштою вже існує";
+                    }
+                }
+            }
+            return null;
+        }
+
         private async Task Authenticate(string userName)
         {
             // создаем один claim

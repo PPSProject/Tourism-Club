@@ -2,8 +2,6 @@
 @model tourism_club.Models.PageModel
 
 
-
-
 <div class="name centring">
     <h1>@Model.location.LocationTitle</h1>
 </div>
@@ -15,7 +13,6 @@
             {
                 <img src="@fotos" alt="Sample foto"/><br />
             }
-
         }
     }
 </div>
@@ -39,7 +36,6 @@
                         <input type="hidden" value="@Model.users.Find(x => x.Name == User.Identity.Name).Id" name="CommentatorId" />
 
                     }
-
                     @*<input type="text" name="comment" />*@
                     <textarea type="text" rows="4" cols="20" name="comment"></textarea>
                     <br />

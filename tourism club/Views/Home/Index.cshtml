@@ -13,15 +13,26 @@
         @{
             foreach (var loc in Model)
             {
-                <article class="centringpading">
-                    <a href="~/Home/Location/@loc.Id">
+
+
+<article class="centringpading">
+            <a href="~/Home/Location/@loc.Id">
+                @{ try
+                    {
                         <img class="imgStyle" src="@loc.PathToPhotos.Split(",")[0].ToString()" />
+                    }
+                    catch (Exception)
+                    {
+                        <p>No foto</p><br/>
+                    }
+                }
 
 
-                        <div>
-                            @loc.LocationTitle
-                        </div>
-                    </a>
+
+                <div>
+                    @loc.LocationTitle
+                </div>
+            </a>
                 </article>
             }
         }

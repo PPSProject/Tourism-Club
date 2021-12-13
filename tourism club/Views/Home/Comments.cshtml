@@ -4,26 +4,27 @@
 
 @foreach (var coms in Model.comments)
 {
-    <div class="Comment">
-        @{
-            if (Model.users.Find(x => x.Id == coms.CommentatorId).Name == User.Identity.Name)
-            {
+<div class="Comment">
+    @{
+        if (Model.users.Find(x => x.Id == coms.CommentatorId).Name == User.Identity.Name || ViewBag.boolAdmin)
+        {
 
-                <p>@Model.users.Find(x => x.Id == coms.CommentatorId).Name</p>
-                <p>@coms.comment</p>
-                <form method="post" action="">
-                    <input type="hidden" value="@Model.location.Id" name="LocationId" />
-                    <input type="hidden" value="@coms.Id" name="Id" />
-                    <button name="action" onclick="deleteComent(event);" value="deleteComment">Видалити</button>
-                    <!--<input type="button" name="action"--> <!--onclick="deleteComent(event);" value="deleteComment" />-->
-                </form>
-            }
-            else
-            {
-                <p>@Model.users.Find(x => x.Id == coms.CommentatorId).Name</p>
-                <p>@coms.comment</p>
-            }
+            <p>@Model.users.Find(x => x.Id == coms.CommentatorId).Name</p>
+            <p>@coms.comment</p>
+            <form method="post" action="">
+                <input type="hidden" value="@Model.location.Id" name="LocationId" />
+                <input type="hidden" value="@coms.Id" name="Id" />
+                <button name="action" onclick="deleteComent(event);" value="deleteComment">Видалити</button>
+                <!--<input type="button" name="action"--> <!--onclick="deleteComent(event);" value="deleteComment" />-->
+            </form>
         }
+       
+        else
+        {
+            <p>@Model.users.Find(x => x.Id == coms.CommentatorId).Name</p>
+            <p>@coms.comment</p>
+        }
+    }
 
-    </div>
+</div>
 }

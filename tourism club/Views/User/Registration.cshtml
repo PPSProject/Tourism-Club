@@ -13,7 +13,19 @@
 
             <input id="authorizationButton" class="centringpading setsize" type="submit"
                    value=" Зареєструватись " />
+            <div class="centring">
+                @if (ViewBag.mail != null)
+                {
+                    <p>@ViewBag.mail</p>
+                }
+                @if (ViewBag.fix != null)
+                {
+                    <p>@ViewBag.fix</p>
+                }
+
+            </div>
             <!-- alert (реєстрація успішна)-->
+            
         </form>
     </div>
   </div>

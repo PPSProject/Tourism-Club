@@ -1,35 +1,24 @@
-﻿
-
-@*<form method="post" action="">
-    <table>
-        <tbody>
-            <tr>
-                <td>Введіть логін</td>
-                <td><input type="text" name="Name" /></td>
-            </tr>
-            <tr>
-                <td>Введіть пароль</td>
-                <td><input type="password" name="password" /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Увійти" /></td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/User/Registration">Зареєструватися</a>
-</form>*@
-
+﻿@model tourism_club.Models.User
 
 <div id="login_reistration_fon">
     <div id="reistrationBloc" class="centringpading formBloc">
         <form method="post" class="centringpading">
-            <input class="setsize" type="text" name="Name" placeholder=" Уведіть имя" />
+            <input class="setsize" type="text" name="Name" value="@Model.Name" placeholder=" Уведіть имя" />
 
-            <input class="setsize" type="password" name="password" placeholder=" Уведіть пароль" />
+            <input class="setsize" type="password" name="password" value="@Model.password" placeholder=" Уведіть пароль" />
 
             <input id="authorizationButton"
                    class="centringpading setsize" type="submit" value="Увійти " />
+            @{
+                if (ViewBag.data != null)
+                {
+                    <div class="name centring">
+                        <p>@ViewBag.data</p>
+                    </div>
+                }
+            }
             <!-- alert (реєстрація успішна)-->
         </form>
     </div>
+
 </div>

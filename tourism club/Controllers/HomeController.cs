@@ -32,22 +32,32 @@ namespace tourism_club.Controllers
             roles = new EFRoles(context);
         }
 
+        bool getRole()
+        {
+            User user = users.getUserbyName(User.Identity.Name);
+            user.existadminrole = roles.getRole(user);
+            return user.existadminrole.adminRole;
+        }
         public  IActionResult Index()
         {
             ViewBag.boolAdmin = false;
             if (User.Identity.Name != null)
             {
-                User user = users.getUserbyName(User.Identity.Name);
-                user.existadminrole = roles.getRole(user);
-                ViewBag.boolAdmin = user.existadminrole.adminRole;
+                ViewBag.boolAdmin = getRole();
             }
 
             return View(db.locations.ToList());
         }
-
+        
         [HttpGet]
         public IActionResult Location(int id)
         {
+            ViewBag.boolAdmin = false;
+            if (User.Identity.Name != null)
+            {
+                ViewBag.boolAdmin = getRole();
+            }
+
             PageModel pageModel = new PageModel();
             if (id == null)
             {
@@ -68,6 +78,12 @@ namespace tourism_club.Controllers
         [Authorize]
         public ActionResult Location(Comment comm, string action, string comment, int LocationId, int CommentatorId, int Id)
         {
+            ViewBag.boolAdmin = false;
+            if (User.Identity.Name != null)
+            {
+                ViewBag.boolAdmin = getRole();
+            }
+
             Location location = loc.getLocation(LocationId);
             location.Id = LocationId;
 
